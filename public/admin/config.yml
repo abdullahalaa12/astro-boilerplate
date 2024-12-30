@@ -1,0 +1,73 @@
+backend:
+  name: git-gateway
+  branch: main # or your default branch
+
+media_folder: "src/assets/images" # Location where files will be stored in the repo
+public_folder: "src/assets/images" # The src attribute for uploaded media
+
+collections:
+  - name: "blog_en"
+    label: "Blog (English)"
+    folder: "src/content/blog/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Slug Arabic", name: "slug_arabic", widget: "string" }
+      - {
+          label: "Author",
+          name: "author",
+          widget: "relation",
+          collection: "authors_en",
+          search_fields: ["name"],
+          value_field: "name",
+        }
+      - { label: "Meta Description", name: "meta_description", widget: "text" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "OG Image", name: "og_image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "blog_ar"
+    label: "المدونة (Arabic)"
+    folder: "src/content/blog/ar"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "عنوان المقال", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Slug English", name: "slug_english", widget: "string" }
+      - {
+          label: "الكاتب",
+          name: "author",
+          widget: "relation",
+          collection: "authors_ar",
+          search_fields: ["name"],
+          value_field: "name",
+        }
+      - { label: "وصف ميتا", name: "meta_description", widget: "text" }
+      - { label: "التاريخ", name: "date", widget: "datetime" }
+      - { label: "الوسوم", name: "tags", widget: "list" }
+      - { label: "صورة المشاركة", name: "og_image", widget: "image" }
+      - { label: "المحتوى", name: "body", widget: "markdown" }
+
+  - name: "authors_en"
+    label: "Authors (English)"
+    folder: "src/content/authors/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Author Name", name: "name", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Profile Image", name: "profile_image", widget: "image" }
+
+  - name: "authors_ar"
+    label: "الكتّاب (Arabic)"
+    folder: "src/content/authors/ar"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "اسم الكاتب", name: "name", widget: "string" }
+      - { label: "نبذة", name: "bio", widget: "text" }
+      - { label: "صورة الكاتب", name: "profile_image", widget: "image" }
